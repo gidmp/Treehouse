@@ -1,0 +1,21 @@
+body{
+    font-family: 'Nunito', sans-serif;
+}
+#placeHolderArt{
+    background-color: aquamarine;
+    width: 90%;
+    height: 210px;
+    margin: 10px auto 10px 30px;
+}
+.dark{
+    margin-left: 30px;
+    color: #5d5d5a;
+    font-size: 32px;
+}
+.logo{
+    font-size: 1.5rem;
+}
+.nav-wrapper{
+    background-color: #a7ff83;
+    color: #5d5d5a;
+}
