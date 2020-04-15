@@ -5,16 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Treehouse</title>
-
+    
+    <link rel="stylesheet" href="Assets/cssReset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+    <link href="https://fonts.googleapis.com/css?family=Nunito:800&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo">Logo</a>
+          <a href="#" class="dark"><i class="fas fa-tree"></i> Treehouse</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="sass.html">Sass</a></li>
             <li><a href="badges.html">Components</a></li>
@@ -38,7 +47,7 @@
                               <option value="" disabled selected>Choose your genre</option>
                               <option value="rock">Rock</option>
                               <option value="pop">Pop</option>
-                              <option value="hip-hop/rap">Hip-hop/Rap</option>
+                              <option value="hip-hop/rap">Hip-Hop/Rap</option>
                               <option value="r&b">R&B</option>
                               <option value="country">Country</option>
                               <option value="soul">Soul</option>
@@ -59,6 +68,59 @@
               </div>
             </div>
             <div class ="col s1"></div>
+          </div>
+          <div class="row">
+            <div class="col s5">
+              <div class="card col s12">
+                <ul class="results">
+                  <li class="results-header"><h4>Events happening:</h4></li>
+                  <hr>
+                  <li class="resultsBtn">PlaceHolder1</li>
+                  <hr>
+                  <li class="resultsBtn">PlaceHolder2</li>
+                  <hr>
+                  <li class="resultsBtn">PlaceHolder3</li>
+                  <hr>
+                  <li class="resultsBtn">PlaceHolder4</li>
+                  <hr>
+                  <li class="resultsBtn">PlaceHolder5</li>
+                  <hr>
+                  <li class="resultsBtn">PlaceHolder6</li>
+                  <hr>
+                  <li class="resultsBtn">PlaceHolder7</li>
+                  <hr>
+                  <li class="resultsBtn">PlaceHolder8</li>
+                  <hr>
+                  <li class="resultsBtn">PlaceHolder9</li>
+                  <hr>
+                  <li class="resultsBtn">PlaceHolder10</li>
+                  <hr>
+                </ul>
+              </div>
+            </div>
+            <div class="col s7">
+              <div class="card">
+                <div class="row section">
+                  <div class="col s12">
+                      <div id="eventDescription" class="col push-s1">
+                        <h5 id="eventName">Event name</h5>
+                        <p id="artistName">Artist name</p>
+                        <p id="eventTime">local start time,local date </p>
+                        <p id="venueInfo">venue info</p>
+                        <p id="eventStatus">Event status</p>
+                      </div>
+                      <div class="col push-s2" id=eventImg>
+                        <img src="https://via.placeholder.com/200x150" style="margin-top: 20px;">
+                      </div>
+                  </div>
+                </div>
+                <div class="row section" id=artistInfo>
+                  <div class="col s12" id="placeHolderArt">
+
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
       </div>
       
