@@ -19,14 +19,12 @@ $.ajax({
         url: queryURL3,
         method: "GET"
     }).then(function(response) {
-        console.log(response);
     });
     var queryURL4 = "http://theaudiodb.com/api/v1/json/1/mvid-mb.php?i=" + musicBrainzArtist;
     $.ajax({
         url: queryURL4,
         method: "GET"
     }).then(function(response) {
-        console.log(response);
     });
 });
 
@@ -36,7 +34,6 @@ $.ajax({
 }).then(function(response) {
     console.log(response);
     for(var i = 0; i < response.album.length; i++) {
-        console.log(response.album[i].strAlbum);
     }
     var albumID = response.album[0].idAlbum;
     var queryURL5 = "http://theaudiodb.com/api/v1/json/1/track.php?m=" + albumID;
@@ -44,7 +41,6 @@ $.ajax({
         url: queryURL5,
         method: "GET"
     }).then(function(response) {
-        console.log(response);
     });
 });
 

@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
 
-
     $("#searchBtn").on("click", function(){
         event.preventDefault();
         var city = $("#location").val().trim();   
@@ -24,8 +23,13 @@ $(document).ready(function() {
                 //empty out previous query after each search event button press
                 $(".results").empty();
 
-                console.log(queryURL);
                 console.log(response);
+
+                var resultsHeader= $("<h4>").attr("class", "results-header")
+                resultsHeader.text("Events Happening:");
+                $(".results").append(resultsHeader)
+                $(".results").append($("<hr>"));
+                
                 //display event name on page
                 for(var i = 0; i < 10; i++){
                     var createButtons = $("<li>");
@@ -35,13 +39,14 @@ $(document).ready(function() {
                     createButtons.attr({"city": city, "keyword": getName}); //set the keyword to the query to pull specific info
                     createButtons.text(getName);
                     $(".results").append(createButtons,createLine);
+
                 }
+
 
                 $(document).on("click", ".resultsBtn", function(event) {
                     event.preventDefault();
                     var keyword = $(this).attr("keyword");
                     var city = $(this).attr("city");
-                    console.log(keyword);
                     var eventQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city="+city+"&keyword="+keyword+"&apikey="+ ticketMasterAPI;
             
                     $.ajax({
@@ -68,6 +73,12 @@ $(document).ready(function() {
                             var image = response._embedded.events[0]._embedded.attractions[0].images[4].url;
                             $("#eventImage").attr("src", image);
 
+                            // var ticketLink = response._embedded.events[0]._embedded.attractions[0].url;
+                            // var minPrice = response._embedded.events[0].priceRanges[0].min;
+                            // var maxPrice = response._embedded.events[0].priceRanges[0].max;
+                            // var startDate = response._embedded.events[0].dates.start.localDate;
+                            // var startTime = response._embedded.events[0].dates.start.localTime;
+
                     
             
                         })
@@ -79,9 +90,6 @@ $(document).ready(function() {
             })
 
     }
-
-
-
 
 })
 
