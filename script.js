@@ -3,11 +3,6 @@ $(document).ready(function() {
 
 
     $("#searchBtn").on("click", function(){
-        //when the submit button is clicked
-        //when the genre is picked, it will added class selected, add the 
-        //value of the selected class to the query and 
-        //when the input form have the name of the city,take it's value
-        //and insert it to the query
         event.preventDefault();
         var city = $("#location").val().trim();   
         var genre = $('select').val();
@@ -56,8 +51,24 @@ $(document).ready(function() {
                             console.log(response);
                             var getTitle = response._embedded.events[0].name
                             $("#eventName").text(getTitle);
+
                             var artist = response._embedded.events[0]._embedded.attractions[0].name;
                             $("#artistName").text("Artist: " + artist);
+
+                            var venueName = response._embedded.events[0]._embedded.venues[0].name;
+                            var venueAddress = response._embedded.events[0]._embedded.venues[0].address.line1;
+                            var venueState = response._embedded.events[0]._embedded.venues[0].state.stateCode;
+                            var venueCity = response._embedded.events[0]._embedded.venues[0].city.name;
+                            var venuePostalCode = response._embedded.events[0]._embedded.venues[0].postalCode;
+                            $("#venueInfo").text("Venue: " + venueName + " ("+venueAddress+", "+venueCity+", "+ venueState+" "+ venuePostalCode +")");
+
+                            var eventStatus = response._embedded.events[0].dates.status.code;
+                            $("#eventStatus").text("Event Status : " + eventStatus.toUpperCase());
+
+                            var image = response._embedded.events[0]._embedded.attractions[0].images[4].url;
+                            $("#eventImage").attr("src", image);
+
+                    
             
                         })
             
@@ -69,24 +80,6 @@ $(document).ready(function() {
 
     }
 
-    //when event name clicked, display the event info on the side bar
-    // $(document).on("click", ".resultsBtn", function(event) {
-    //     event.preventDefault();
-    //     var ticketMasterAPI = "GzXQkPNDt7ZVTo3fbAmXPspPozArApCc";
-    //     var keyword = $(this).attr("keyword");
-    //     var city = $(this).attr("city");
-    //     console.log(keyword);
-    //     var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city="+city+"&keyword="+keyword+"&apikey="+ ticketMasterAPI;
-
-    //     $.ajax({
-    //         url: queryURL,
-    //         method: "GET"
-    //         }).then(function(response) {
-    //             console.log(response);
-
-    //         })
-
-    // })
 
 
 
