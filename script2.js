@@ -12,6 +12,7 @@ $(document).ready(function() {
 
     function getArtistInfo(artistName) {
         console.log("Vinh's input: " + artistName);
+        $("#placeHolderArt").empty();
         var queryURL1 = "http://theaudiodb.com/api/v1/json/1/search.php?s=" + artistName;
         var queryURL2 = "http://theaudiodb.com/api/v1/json/1/searchalbum.php?s=" + artistName;
 
@@ -24,7 +25,8 @@ $(document).ready(function() {
             // var bio = response.artists[0].strBiographyEN;
             var artistID = response.artists[0].idArtist;
             var content = $("<p>").text(artist);
-            $("#placeHolderArt").append(content);
+            var paragraph = $("<p>").text(" ");
+            $("#placeHolderArt").append(content, paragraph);
             var queryURL3 = "http://theaudiodb.com/api/v1/json/1/mvid.php?i=" + artistID;
             $.ajax({
                 url: queryURL3,
@@ -39,12 +41,22 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(response) {
             console.log(response);
-            for(var i = 0; i < response.album.length; i++) {
-                console.log(response.album[i].strAlbum);
+            var albumPrint = 0;
+            var index = 0;
+            while(albumPrint != 3 && index != response.album.length - 1) {
+                var albumThumb = response.album[index].strAlbumThumb;
+                if(albumThumb != null) {
+                    var thumbContent = $("<img>").attr("src", albumThumb + "/preview");
+                    $("#placeHolderArt").append(thumbContent);
+                    albumPrint++;
+                }
+                index++;
             }
-            var albumThumb = response.album[0].strAlbumThumb + "/preview";
-            var thumbContent = $("<img>").attr("src", albumThumb);
-            $("#placeHolderArt").append(thumbContent);
+            if(albumPrint === 0) {
+                var content = $("<p>").text("No album art to show");
+                $("#placeHolderArt").append(content);
+            }
+
             var albumID = response.album[0].idAlbum;
             var queryURL5 = "http://theaudiodb.com/api/v1/json/1/track.php?m=" + albumID;
             $.ajax({
@@ -75,7 +87,7 @@ $(document).ready(function() {
                 for(var i = 0; i < 10; i++){
                     var createButtons = $("<li>");
                     var createLine = $("<hr>");
-                    var getName = response._embedded.events[i].name //use loop to place in placeholder as clickeable links
+                    var getName = response._embedded.events[i].name; //use loop to place in placeholder as clickable links
                     createButtons.addClass("resultsBtn");
                     createButtons.attr({"city": city, "keyword": getName}); //set the keyword to the query to pull specific info
                     createButtons.text(getName);
@@ -84,6 +96,7 @@ $(document).ready(function() {
 
                 $(document).on("click", ".resultsBtn", function(event) {
                     event.preventDefault();
+                    
                     var keyword = $(this).attr("keyword");
                     var city = $(this).attr("city");
                     console.log(keyword);
