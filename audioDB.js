@@ -11,6 +11,9 @@ $.ajax({
     var bio = response.artists[0].strBiographyEN;
     var artistID = response.artists[0].idArtist;
     var musicBrainzArtist = response.artists[0].strMusicBrainzID;
+    var content = $("<p>").text(artist);
+    //var biograph
+    $("#placeHolderArt").append(content);
     var queryURL3 = "http://theaudiodb.com/api/v1/json/1/mvid.php?i=" + artistID;
     $.ajax({
         url: queryURL3,
