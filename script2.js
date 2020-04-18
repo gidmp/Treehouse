@@ -110,9 +110,17 @@ $(document).ready(function() {
                             var getTitle = response._embedded.events[0].name
                             $("#eventName").text(getTitle);
 
+                            //display artists name
                             var artist = response._embedded.events[0]._embedded.attractions[0].name;
-                            $("#artistName").text("Artist: " + artist);
+                            var artistList = response._embedded.events[0]._embedded.attractions;
+                            $("#artistName").text("Artist: ");
+                            for(var i = 0; i < artistList.length; i++){
+                                var artistName = response._embedded.events[0]._embedded.attractions[i].name;
+                                $("#artistName").append(artist + " ");
+                                console.log(artistName);
+                            }
 
+                            //display venue
                             var venueName = response._embedded.events[0]._embedded.venues[0].name;
                             var venueAddress = response._embedded.events[0]._embedded.venues[0].address.line1;
                             var venueState = response._embedded.events[0]._embedded.venues[0].state.stateCode;
@@ -125,6 +133,18 @@ $(document).ready(function() {
 
                             var image = response._embedded.events[0]._embedded.attractions[0].images[4].url;
                             $("#eventImage").attr("src", image);
+
+                            var minPrice = response._embedded.events[0].priceRanges[0].min;
+                            var maxPrice = response._embedded.events[0].priceRanges[0].max;
+                            $("#ticketPrice").text("Ticket price : " + "$"+minPrice + " - " + "$"+maxPrice);
+
+                            //display event date
+                            var startDate = response._embedded.events[0].dates.start.localDate;
+                            var date=new Date(startDate);
+                            var localDate = (date.getMonth() + 1) + '-' + (date.getDate()+1) + '-' +  date.getFullYear();
+                            var startTime = response._embedded.events[0].dates.start.localTime;
+                            startTime = startTime.slice(0, startTime.length -3);
+                            $("#eventTime").text("Event Date : " +  localDate + " @" + startTime);
                             
                             getArtistInfo(artist);
                     
