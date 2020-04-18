@@ -5,6 +5,8 @@ $(document).ready(function() {
         var city = $("#location").val().trim();   
         var genre = $('select').val();
         
+        $("#results").removeClass("hidden")
+        
         inputQuery(city, genre);
 
 
@@ -12,6 +14,7 @@ $(document).ready(function() {
 
     function getArtistInfo(artistName) {
         console.log("Vinh's input: " + artistName);
+        $("#placeHolderArt").empty();
         var queryURL1 = "http://theaudiodb.com/api/v1/json/1/search.php?s=" + artistName;
         var queryURL2 = "http://theaudiodb.com/api/v1/json/1/searchalbum.php?s=" + artistName;
 
@@ -23,8 +26,8 @@ $(document).ready(function() {
             var artist = response.artists[0].strArtist;
             // var bio = response.artists[0].strBiographyEN;
             var artistID = response.artists[0].idArtist;
-            var content = $("<p>").text(artist);
-            $("#placeHolderArt").append(content);
+            var content = $("<h5>").text("Related Albums");
+            $("#placeHolderArt").prepend(content);
             var queryURL3 = "http://theaudiodb.com/api/v1/json/1/mvid.php?i=" + artistID;
             $.ajax({
                 url: queryURL3,
@@ -39,12 +42,22 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(response) {
             console.log(response);
-            for(var i = 0; i < response.album.length; i++) {
-                console.log(response.album[i].strAlbum);
+            var albumPrint = 0;
+            var index = 0;
+            while(albumPrint != 3 && index != response.album.length - 1) {
+                var albumThumb = response.album[index].strAlbumThumb;
+                if(albumThumb != null) {
+                    var thumbContent = $("<img>").attr("src", albumThumb + "/preview");
+                    thumbContent.attr("class","albumThumb");
+                    $("#placeHolderArt").append(thumbContent);
+                    albumPrint++;
+                }
+                index++;
             }
-            var albumThumb = response.album[0].strAlbumThumb + "/preview";
-            var thumbContent = $("<img>").attr({"src": albumThumb,"class": ".albumThumb"});
-            $("#placeHolderArt").append(thumbContent);
+            if(albumPrint === 0) {
+                var content = $("<p>").text("No album art to show");
+                $("#placeHolderArt").append(content);
+            }
             var albumID = response.album[0].idAlbum;
             var queryURL5 = "http://theaudiodb.com/api/v1/json/1/track.php?m=" + albumID;
             $.ajax({
@@ -69,7 +82,7 @@ $(document).ready(function() {
                 //empty out previous query after each search event button press
                 $(".results").empty();
                 var resultsHeader= $("<h4>").attr("class", "results-header")
-                resultsHeader.text("Events Happening:");
+                resultsHeader.text("Concerts Happening:");
                 $(".results").append(resultsHeader)
                 $(".results").append($("<hr>"));
 
@@ -79,7 +92,7 @@ $(document).ready(function() {
                 for(var i = 0; i < 10; i++){
                     var createButtons = $("<li>");
                     var createLine = $("<hr>");
-                    var getName = response._embedded.events[i].name //use loop to place in placeholder as clickeable links
+                    var getName = response._embedded.events[i].name; //use loop to place in placeholder as clickable links
                     createButtons.addClass("resultsBtn");
                     createButtons.attr({"city": city, "keyword": getName}); //set the keyword to the query to pull specific info
                     createButtons.text(getName);
@@ -88,6 +101,9 @@ $(document).ready(function() {
 
                 $(document).on("click", ".resultsBtn", function(event) {
                     event.preventDefault();
+                    $("#events").removeClass("hidden");
+                    $("#placeHolderArt").empty();
+                    $("#ticketPrice").empty();
                     var keyword = $(this).attr("keyword");
                     var city = $(this).attr("city");
                     console.log(keyword);
@@ -101,9 +117,17 @@ $(document).ready(function() {
                             var getTitle = response._embedded.events[0].name
                             $("#eventName").text(getTitle);
 
+                            //display artists name(bug with the for loop stopping single artist album artwork to show)
                             var artist = response._embedded.events[0]._embedded.attractions[0].name;
-                            $("#artistName").text("Artist: " + artist);
+                            var artistList = response._embedded.events[0]._embedded.attractions;
+                            $("#artistName").text("Artist: ");
+                            // for(var i = 0; i < 3; i++){
+                                var artistName = response._embedded.events[0]._embedded.attractions[0].name;
+                                $("#artistName").append(artistName + " ");
+                                console.log(artistName);
+                            // }
 
+                            //display venue
                             var venueName = response._embedded.events[0]._embedded.venues[0].name;
                             var venueAddress = response._embedded.events[0]._embedded.venues[0].address.line1;
                             var venueState = response._embedded.events[0]._embedded.venues[0].state.stateCode;
@@ -117,6 +141,18 @@ $(document).ready(function() {
                             var image = response._embedded.events[0]._embedded.attractions[0].images[4].url;
                             $("#eventImage").empty();
                             $("#eventImage").attr("src", image);
+
+                            var minPrice = response._embedded.events[0].priceRanges[0].min;
+                            var maxPrice = response._embedded.events[0].priceRanges[0].max;
+                            $("#ticketPrice").text("Ticket price : " + "$"+minPrice + " - " + "$"+maxPrice);
+
+                            //display event date
+                            var startDate = response._embedded.events[0].dates.start.localDate;
+                            var date=new Date(startDate);
+                            var localDate = (date.getMonth() + 1) + '-' + (date.getDate()+1) + '-' +  date.getFullYear();
+                            var startTime = response._embedded.events[0].dates.start.localTime;
+                            startTime = startTime.slice(0, startTime.length -3);
+                            $("#eventTime").text("Event Date : " +  localDate + " @" + startTime);
                             
                             getArtistInfo(artist);
                     
