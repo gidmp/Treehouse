@@ -4,9 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Treehouse</title>
+    
+    <link rel="stylesheet" href="Assets/cssReset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:800&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="dark"><i class="fas fa-tree"></i> Treehouse</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="dark">Find all your local concerts here.</li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="row">
+            <div class ="col m1"></div>
+            <div class="col m10">
+              <div class="card-panel card">
+                  <div class="row">
+                    <div class="input-field col m6">
+                        <input placeholder="i.e. Las Vegas" id="location" type="text" class="validate">
+                        <label for="location">Location: City</label>
+                      </div>
+                      <div class ="col m6">
+                        <div class="input-field">
+                            <select>
+                              <option value="" disabled selected>Choose your genre</option>
+                              <option value="rock">Rock</option>
+                              <option value="pop">Pop</option>
+                              <option value="hip-hop/rap">Hip-Hop/Rap</option>
+                              <option value="r&b">R&B</option>
+                              <option value="country">Country</option>
+                              <option value="soul">Soul</option>
+                              <option value="jazz">Jazz</option>
+                              <option value="classical">Classical</option>
+                            </select>
+                            <label>Genre</label>
+                          </div>
+                    </div>
+                  </div>
+                  <div class = "row">
+                    <div class = "m12" style="text-align: center;">
+                      <a class="btn waves-effect waves-light hoverable" type="submit" name="action" id="searchBtn">Search concerts
+                          <i class="material-icons right">search</i>
+                      </a>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class ="col m1"></div>
+          </div>
+          <div class="row">
+            <div class="col m5">
+              <div class="card col m12 hidden" id="results"> 
+                <ul class="results">
+                  <li class="results-header flow-text"><h4>Concerts happening:</h4></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col m7">
+              <div class="card hidden" id="events">
+                <div class="row section">
+                  <div class="col m12">
+                      <div id="eventDescription" class="col m12">
+                        <h5 class="flow-text" id="eventName">Event name</h5>
+                        <p class="eventInfo" id="artistName">Artist</p>
+                        <p class="eventInfo" id="eventTime">local start time,local date </p>
+                        <p class="eventInfo" id="venueInfo">venue info</p>
+                        <p class="eventInfo" id="eventStatus">Event status</p>
+                        <p class="eventInfo" id="ticketPrice">Ticket price</p>
+                        <div class="center">
+                        <a class="waves-effect waves-light btn-small" id="ticketLink" target="_blank">Purchase Tickets</a>
+                          </div>
+                      </div>
+                      <div class="center" id=eventImg>
+                        <img id = "eventImage"  style="margin-top: 20px;" height="150" width="200">
+                      </div>
+                  </div>
+                </div>
+                <div class="row" id=artistInfo>
+                  <div class="col m12 center" id="placeHolderArt">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <script src="./script.js"></script>
+
+    <script>
+        $(document).ready(function(){
+    $('select').formSelect();
+  });
+    </script>
+    <!-- <script src = "./script.js"></script>
+    <script src = "./audioDB.js"></script> -->
+    <script src = "./script2.js"></script>
 </body>
 </html>

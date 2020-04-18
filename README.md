@@ -1,22 +1,21 @@
-# Treehouse
-Coding project
+# Coding project - Treehouse
 
-Preliminary Notes
+## Preliminary Notes
 Events happening in area via ticketmaster
 Uber for directions and ETAs, and cost of total
 Weather gives forecast of weather of location
 
 As a user of the app, I want to get events happening around my area
 
-Project Name (may change later)
+## Project Name (may change later)
 Treehouse: The Most Useful Event App You’ll Ever Need :)
 
-Project Description
-This application will allow the user to search for nearby events happening around a person using their location. When a user selects an event, they will be shown driving driections and the cost of the drive through Uber and a weather application displaying the porjected weather for the day of the event. The general application will provide a very useful way for users to either plan ahead for events or for last-minute hangouts!
+## Project Description
+This application will allow the user to search for nearby events happening around a person using their location. When a user selects an event, they will be shown driving directions and the cost of the drive through Uber and a weather application displaying the projected weather for the day of the event. The general application will provide a very useful way for users to either plan ahead for events or for last-minute hangouts!
 
-User Story
+## User Story
 As a customer
-I want infomration about an event
+I want information about an event
 So that I can make an informed decision as to whether I want to go to it or not based on certain criteria
 
 When I open the app
