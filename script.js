@@ -73,6 +73,9 @@ $(document).ready(function() {
                             var image = response._embedded.events[0]._embedded.attractions[0].images[4].url;
                             $("#eventImage").attr("src", image);
 
+                            var ticketLink = response._embedded.events[0]._embedded.attractions[0].url;
+                            $("#ticketLink").attr("href", ticketLink);
+
                             // var ticketLink = response._embedded.events[0]._embedded.attractions[0].url;
                             // var minPrice = response._embedded.events[0].priceRanges[0].min;
                             // var maxPrice = response._embedded.events[0].priceRanges[0].max;
