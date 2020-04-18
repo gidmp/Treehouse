@@ -15,8 +15,8 @@ $(document).ready(function() {
     function getArtistInfo(artistName) {
         console.log("Vinh's input: " + artistName);
         $("#placeHolderArt").empty();
-        var queryURL1 = "http://theaudiodb.com/api/v1/json/1/search.php?s=" + artistName;
-        var queryURL2 = "http://theaudiodb.com/api/v1/json/1/searchalbum.php?s=" + artistName;
+        var queryURL1 = "https://theaudiodb.com/api/v1/json/1/search.php?s=" + artistName;
+        var queryURL2 = "https://theaudiodb.com/api/v1/json/1/searchalbum.php?s=" + artistName;
 
         $.ajax({
             url: queryURL1,
@@ -28,7 +28,7 @@ $(document).ready(function() {
             var artistID = response.artists[0].idArtist;
             var content = $("<h5>").text("Related Albums");
             $("#placeHolderArt").prepend(content);
-            var queryURL3 = "http://theaudiodb.com/api/v1/json/1/mvid.php?i=" + artistID;
+            var queryURL3 = "https://theaudiodb.com/api/v1/json/1/mvid.php?i=" + artistID;
             $.ajax({
                 url: queryURL3,
                 method: "GET"
@@ -59,7 +59,7 @@ $(document).ready(function() {
                 $("#placeHolderArt").append(content);
             }
             var albumID = response.album[0].idAlbum;
-            var queryURL5 = "http://theaudiodb.com/api/v1/json/1/track.php?m=" + albumID;
+            var queryURL5 = "https://theaudiodb.com/api/v1/json/1/track.php?m=" + albumID;
             $.ajax({
                 url: queryURL5,
                 method: "GET"
