@@ -43,7 +43,7 @@ $(document).ready(function() {
                 console.log(response.album[i].strAlbum);
             }
             var albumThumb = response.album[0].strAlbumThumb + "/preview";
-            var thumbContent = $("<img>").attr("src", albumThumb);
+            var thumbContent = $("<img>").attr({"src": albumThumb,"class": ".albumThumb"});
             $("#placeHolderArt").append(thumbContent);
             var albumID = response.album[0].idAlbum;
             var queryURL5 = "http://theaudiodb.com/api/v1/json/1/track.php?m=" + albumID;
@@ -68,6 +68,10 @@ $(document).ready(function() {
             }).then(function(response) {
                 //empty out previous query after each search event button press
                 $(".results").empty();
+                var resultsHeader= $("<h4>").attr("class", "results-header")
+                resultsHeader.text("Events Happening:");
+                $(".results").append(resultsHeader)
+                $(".results").append($("<hr>"));
 
                 console.log(queryURL);
                 console.log(response);
@@ -111,6 +115,7 @@ $(document).ready(function() {
                             $("#eventStatus").text("Event Status : " + eventStatus.toUpperCase());
 
                             var image = response._embedded.events[0]._embedded.attractions[0].images[4].url;
+                            $("#eventImage").empty();
                             $("#eventImage").attr("src", image);
                             
                             getArtistInfo(artist);

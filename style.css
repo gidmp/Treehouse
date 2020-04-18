@@ -19,3 +19,7 @@ body{
     background-color: #a7ff83;
     color: #5d5d5a;
 }
+.albumThumb{
+    max-width: 50px;
+    max-height: 50px;
+}
