@@ -25,23 +25,21 @@
         <div class="nav-wrapper">
           <a href="#" class="dark"><i class="fas fa-tree"></i> Treehouse</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">JavaScript</a></li>
+            <li class="dark">Find all your local concerts here.</li>
           </ul>
         </div>
       </nav>
       <div class="container">
         <div class="row">
-            <div class ="col s1"></div>
-            <div class="col s10">
-              <div class="card-panel">
+            <div class ="col m1"></div>
+            <div class="col m10">
+              <div class="card-panel card">
                   <div class="row">
-                    <div class="input-field col s6">
+                    <div class="input-field col m6">
                         <input placeholder="i.e. Las Vegas" id="location" type="text" class="validate">
                         <label for="location">Location: City</label>
                       </div>
-                      <div class ="col s6">
+                      <div class ="col m6">
                         <div class="input-field">
                             <select>
                               <option value="" disabled selected>Choose your genre</option>
@@ -59,45 +57,46 @@
                     </div>
                   </div>
                   <div class = "row">
-                    <div class = "s12" style="text-align: center;">
-                      <button class="btn waves-effect waves-light" type="submit" name="action" id="searchBtn">Search Events
+                    <div class = "m12" style="text-align: center;">
+                      <a class="btn waves-effect waves-light hoverable" type="submit" name="action" id="searchBtn">Search concerts
                           <i class="material-icons right">search</i>
-                        </button>
+                      </a>
                     </div>
                 </div>
               </div>
             </div>
-            <div class ="col s1"></div>
+            <div class ="col m1"></div>
           </div>
           <div class="row">
-            <div class="col s5">
-              <div class="card col s12">
+            <div class="col m5">
+              <div class="card col m12 hidden" id="results"> 
                 <ul class="results">
-                  <li class="results-header"><h4>Events happening:</h4></li>
+                  <li class="results-header flow-text"><h4>Concerts happening:</h4></li>
                 </ul>
               </div>
             </div>
-            <div class="col s7">
-              <div class="card">
+            <div class="col m7">
+              <div class="card hidden" id="events">
                 <div class="row section">
-                  <div class="col s12">
-                      <div id="eventDescription" class="col push-s1">
-                        <h5 id="eventName">Event name</h5>
-                        <p id="artistName">Artist name</p>
-                        <p id="eventTime">local start time,local date </p>
-                        <p id="venueInfo">venue info</p>
-                        <p id="eventStatus">Event status</p>
-                        <p id="ticketPrice">Ticket price</p>
-                        <a id="ticketLink" target="_blank">Click Me</a>
-
+                  <div class="col m12">
+                      <div id="eventDescription" class="col m12">
+                        <h5 class="flow-text" id="eventName">Event name</h5>
+                        <p class="eventInfo" id="artistName">Artist</p>
+                        <p class="eventInfo" id="eventTime">local start time,local date </p>
+                        <p class="eventInfo" id="venueInfo">venue info</p>
+                        <p class="eventInfo" id="eventStatus">Event status</p>
+                        <p class="eventInfo" id="ticketPrice">Ticket price</p>
+                        <div class="center">
+                        <a class="waves-effect waves-light btn-small" id="ticketLink" target="_blank">Purchase Tickets</a>
+                          </div>
                       </div>
-                      <div class="col push-s2" id=eventImg>
+                      <div class="center" id=eventImg>
                         <img id = "eventImage"  style="margin-top: 20px;" height="150" width="200">
                       </div>
                   </div>
                 </div>
-                <div class="row section" id=artistInfo>
-                  <div class="col s12" id="placeHolderArt">
+                <div class="row" id=artistInfo>
+                  <div class="col m12 center" id="placeHolderArt">
                   </div>
                 </div>
               </div>
