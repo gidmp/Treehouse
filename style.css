@@ -1,7 +1,7 @@
 body{
     font-family: 'Nunito', sans-serif !important;
     background-color:#fff4e3;
-    background-image: url(/Assets/people-at-concert-1105666.jpg);
+    background-image: url(Assets/people-at-concert-1105666.jpg);
     background-size: cover;
 }
 .dark{
