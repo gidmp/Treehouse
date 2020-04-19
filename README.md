@@ -3,14 +3,13 @@
 This is an app that helps you find concerts based on the genre of your choice near you. It will provide all the neccesary information for the concerts as well as link to the ticket seller and the album covers of the related artist if you are interested.
 
 ## Project Name 
-Treehouse: Find all your local concerts
-
-## Project Description
-This application will allow the user to search for nearby events happening around a person using their location. When a user selects an event, they will be shown driving directions and the cost of the drive through Uber and a weather application displaying the projected weather for the day of the event. The general application will provide a very useful way for users to either plan ahead for events or for last-minute hangouts!
+Treehouse: Find All Your Local Concerts
 
 ## User Story
 As a customer
+
 I want information about an event
+
 So that I can make an informed decision as to whether I want to go to it or not based on certain criteria
 
 When I open the app
@@ -29,16 +28,19 @@ When I click on 'buy ticket' button
 
 Then I am redirected to a location where I can buy the concert's ticket
 
-## Used materials
+## Used Materials
 - Ticketmaster API
 - audioDB API
 - Fontawesome
 - Materialize CSS frame
 
-## breakdown of tasks
-Nick - HTML/CSS
-Daniel - Javascript
-Vinh - JavaScript
+## Breakdown of Tasks
+- Nick - HTML & CSS for page
+- Daniel - HTML for page, AJAX calls for Ticketmaster
+- Vinh - AJAX calls for Audio DB
 
+## Useful Links
+[Access the project here!](https://gidmp.github.io/Treehouse/)
+[Access the presentation here!]()
 
 ![](Treehousegif3.gif)
