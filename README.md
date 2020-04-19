@@ -1,9 +1,6 @@
 # Coding project - Treehouse
 
-## Preliminary Notes
-Events happening in area via ticketmaster
-
-As a user of the app, I want to get events happening around my area
+This is an app that helps you find concerts based on the genre of your choice near you. It will provide all the neccesary information for the concerts as well as link to the ticket seller and the album covers of the related artist if you are interested.
 
 ## Project Name 
 Treehouse: Find all your local concerts
@@ -44,4 +41,4 @@ Daniel - Javascript
 Vinh - JavaScript
 
 
-![](TreehouseGif2.gif)
+![](Treehousegif3.gif)
