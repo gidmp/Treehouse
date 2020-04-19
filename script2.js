@@ -83,6 +83,12 @@ $(document).ready(function() {
 
                 console.log(queryURL);
                 console.log(response);
+
+                var resultsHeader= $("<h4>").attr("class", "results-header")
+                resultsHeader.text("Events Happening:");
+                $(".results").append(resultsHeader)
+                $(".results").append($("<hr>"));
+
                 //display event name on page
                 for(var i = 0; i < 10; i++){
                     var createButtons = $("<li>");
@@ -116,8 +122,7 @@ $(document).ready(function() {
                             $("#artistName").text("Artist: ");
                             for(var i = 0; i < artistList.length; i++){
                                 var artistName = response._embedded.events[0]._embedded.attractions[i].name;
-                                $("#artistName").append(artist + " ");
-                                console.log(artistName);
+                                $("#artistName").append(artistName + " ");
                             }
 
                             //display venue
