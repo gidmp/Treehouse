@@ -88,6 +88,8 @@ $(document).ready(function() {
 
                 console.log(queryURL);
                 console.log(response);
+
+
                 //display event name on page
                 for(var i = 0; i < 10; i++){
                     var createButtons = $("<li>");
@@ -119,12 +121,10 @@ $(document).ready(function() {
 
                             //display artists name(bug with the for loop stopping single artist album artwork to show)
                             var artist = response._embedded.events[0]._embedded.attractions[0].name;
-                            var artistList = response._embedded.events[0]._embedded.attractions;
                             $("#artistName").text("Artist: ");
-                            // for(var i = 0; i < 3; i++){
-                                var artistName = response._embedded.events[0]._embedded.attractions[0].name;
-                                $("#artistName").append(artistName + " ");
-                                console.log(artistName);
+                            var artistName = response._embedded.events[0]._embedded.attractions[0].name;
+                            $("#artistName").append(artistName + " ");
+                            console.log(artistName);
                             // }
 
                             //display venue
@@ -138,7 +138,7 @@ $(document).ready(function() {
                             var eventStatus = response._embedded.events[0].dates.status.code;
                             $("#eventStatus").text("Event Status : " + eventStatus.toUpperCase());
 
-                            var image = response._embedded.events[0]._embedded.attractions[0].images[4].url;
+                            var image = response._embedded.events[0]._embedded.attractions[0].images[1].url;
                             $("#eventImage").empty();
                             $("#eventImage").attr("src", image);
 

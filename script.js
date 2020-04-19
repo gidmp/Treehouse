@@ -23,8 +23,6 @@ $(document).ready(function() {
                 //empty out previous query after each search event button press
                 $(".results").empty();
 
-                console.log(response);
-
                 var resultsHeader= $("<h4>").attr("class", "results-header")
                 resultsHeader.text("Events Happening:");
                 $(".results").append(resultsHeader)
