@@ -1,25 +1,53 @@
 body{
-    font-family: 'Nunito', sans-serif;
-}
-#placeHolderArt{
-    background-color: aquamarine;
-    width: 90%;
-    height: 210px;
-    margin: 10px auto 10px 30px;
+    font-family: 'Nunito', sans-serif !important;
+    background-color:#fff4e3;
+    background-image: url(Assets/people-at-concert-1105666.jpg);
+    background-size: cover;
 }
 .dark{
-    margin-left: 30px;
-    color: #5d5d5a;
+    margin: 0 30px;
+    color: white;
     font-size: 32px;
+    text-align: center;
 }
 .logo{
     font-size: 1.5rem;
 }
 .nav-wrapper{
-    background-color: #a7ff83;
+    background-color:#fa8572;
     color: #5d5d5a;
+}
+.albumThumb{
+    max-width: 150px;
+    max-height: 150px;
+    margin: 1rem .25rem;
+    margin-top: 0;
+    
+}
+.hidden{
+    display: none;
+}
+.eventInfo{
+    margin: .5rem 0;
+}
+h5{
+    margin: 0;
+}
+.card{
+    background-color: #fff4e1;
 }
 
 #eventImage{
-    margin-top: 20px;
+    display: block;
+    border: 2px solid #5d5d5a;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    /* max-height: 150px;
+    max-width: 200px; */
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    
 }

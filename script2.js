@@ -5,6 +5,8 @@ $(document).ready(function() {
         var city = $("#location").val().trim();   
         var genre = $('select').val();
         
+        $("#results").removeClass("hidden")
+        
         inputQuery(city, genre);
 
 
@@ -13,8 +15,8 @@ $(document).ready(function() {
     function getArtistInfo(artistName) {
         console.log("Vinh's input: " + artistName);
         $("#placeHolderArt").empty();
-        var queryURL1 = "http://theaudiodb.com/api/v1/json/1/search.php?s=" + artistName;
-        var queryURL2 = "http://theaudiodb.com/api/v1/json/1/searchalbum.php?s=" + artistName;
+        var queryURL1 = "https://theaudiodb.com/api/v1/json/1/search.php?s=" + artistName;
+        var queryURL2 = "https://theaudiodb.com/api/v1/json/1/searchalbum.php?s=" + artistName;
 
         $.ajax({
             url: queryURL1,
@@ -24,10 +26,9 @@ $(document).ready(function() {
             var artist = response.artists[0].strArtist;
             // var bio = response.artists[0].strBiographyEN;
             var artistID = response.artists[0].idArtist;
-            var content = $("<p>").text(artist);
-            var paragraph = $("<p>").text(" ");
-            $("#placeHolderArt").append(content, paragraph);
-            var queryURL3 = "http://theaudiodb.com/api/v1/json/1/mvid.php?i=" + artistID;
+            var content = $("<h5>").text("Related Albums");
+            $("#placeHolderArt").prepend(content);
+            var queryURL3 = "https://theaudiodb.com/api/v1/json/1/mvid.php?i=" + artistID;
             $.ajax({
                 url: queryURL3,
                 method: "GET"
@@ -47,6 +48,7 @@ $(document).ready(function() {
                 var albumThumb = response.album[index].strAlbumThumb;
                 if(albumThumb != null) {
                     var thumbContent = $("<img>").attr("src", albumThumb + "/preview");
+                    thumbContent.attr("class","albumThumb");
                     $("#placeHolderArt").append(thumbContent);
                     albumPrint++;
                 }
@@ -56,9 +58,8 @@ $(document).ready(function() {
                 var content = $("<p>").text("No album art to show");
                 $("#placeHolderArt").append(content);
             }
-
             var albumID = response.album[0].idAlbum;
-            var queryURL5 = "http://theaudiodb.com/api/v1/json/1/track.php?m=" + albumID;
+            var queryURL5 = "https://theaudiodb.com/api/v1/json/1/track.php?m=" + albumID;
             $.ajax({
                 url: queryURL5,
                 method: "GET"
@@ -80,14 +81,14 @@ $(document).ready(function() {
             }).then(function(response) {
                 //empty out previous query after each search event button press
                 $(".results").empty();
+                var resultsHeader= $("<h4>").attr("class", "results-header")
+                resultsHeader.text("Concerts Happening:");
+                $(".results").append(resultsHeader)
+                $(".results").append($("<hr>"));
 
                 console.log(queryURL);
                 console.log(response);
 
-                var resultsHeader= $("<h4>").attr("class", "results-header")
-                resultsHeader.text("Events Happening:");
-                $(".results").append(resultsHeader)
-                $(".results").append($("<hr>"));
 
                 //display event name on page
                 for(var i = 0; i < 10; i++){
@@ -102,7 +103,9 @@ $(document).ready(function() {
 
                 $(document).on("click", ".resultsBtn", function(event) {
                     event.preventDefault();
-                    
+                    $("#events").removeClass("hidden");
+                    $("#placeHolderArt").empty();
+                    $("#ticketPrice").empty();
                     var keyword = $(this).attr("keyword");
                     var city = $(this).attr("city");
                     console.log(keyword);
@@ -116,14 +119,13 @@ $(document).ready(function() {
                             var getTitle = response._embedded.events[0].name
                             $("#eventName").text(getTitle);
 
-                            //display artists name
+                            //display artists name(bug with the for loop stopping single artist album artwork to show)
                             var artist = response._embedded.events[0]._embedded.attractions[0].name;
-                            var artistList = response._embedded.events[0]._embedded.attractions;
                             $("#artistName").text("Artist: ");
-                            for(var i = 0; i < artistList.length; i++){
-                                var artistName = response._embedded.events[0]._embedded.attractions[i].name;
-                                $("#artistName").append(artistName + " ");
-                            }
+                            var artistName = response._embedded.events[0]._embedded.attractions[0].name;
+                            $("#artistName").append(artistName + " ");
+                            console.log(artistName);
+                            // }
 
                             //display venue
                             var venueName = response._embedded.events[0]._embedded.venues[0].name;
@@ -136,7 +138,8 @@ $(document).ready(function() {
                             var eventStatus = response._embedded.events[0].dates.status.code;
                             $("#eventStatus").text("Event Status : " + eventStatus.toUpperCase());
 
-                            var image = response._embedded.events[0]._embedded.attractions[0].images[4].url;
+                            var image = response._embedded.events[0]._embedded.attractions[0].images[1].url;
+                            $("#eventImage").empty();
                             $("#eventImage").attr("src", image);
 
                             var minPrice = response._embedded.events[0].priceRanges[0].min;
