@@ -44,4 +44,4 @@ Daniel - Javascript
 Vinh - JavaScript
 
 
-![](TreehouseGif.gif)
+![](TreehouseGif2.gif)
