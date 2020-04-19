@@ -41,6 +41,7 @@ Then I am redirected to a location where I can buy the concert's ticket
 
 ## Useful Links
 [Access the project here!](https://gidmp.github.io/Treehouse/)
-[Access the presentation here!]()
+
+[Access the presentation here!](https://docs.google.com/presentation/d/1bO6e62-kmrzfDKRFG31_P3KgOrdsYYzVgO3eJ9Ph3W4/edit#slide=id.p)
 
 ![](Treehousegif3.gif)
